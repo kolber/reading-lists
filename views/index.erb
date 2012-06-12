@@ -1,0 +1,13 @@
+<h1>Readings,</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<ul>
+  <% @articles.each do |article| %>
+    <li>
+      <a href="<%= article.url %>" class="title" title="<%= article.url %>">
+        <strong><%= Time.at(article.time).strftime("%B %d") %></strong>
+        <%= article.title %> <em>↬</em>
+        <span class="link"><%= article.url %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>
