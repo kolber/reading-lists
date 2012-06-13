@@ -1,11 +1,13 @@
-<h1>Readings,</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<h1>♥♥</h1>
+<p><strong>A public collection of texts of historical significance.</strong><br>
+  This list is generated from the contents of a single Instapaper folder using the Instapaper API.<br>
+  The code is open-sourced and available to everyone at <a href="http://github.com/kolber/readinglist">http://github.com/kolber/readinglist</a>.</p>
 <ul>
   <% @articles.each do |article| %>
     <li>
       <a href="<%= article.url %>" class="title" title="<%= article.url %>">
         <strong><%= Time.at(article.time).strftime("%B %d") %></strong>
-        <%= article.title %> <em>↬</em>
+        <%= article.title %>&nbsp;<em>↬</em>
         <span class="link"><%= article.url %></span>
       </a>
     </li>
