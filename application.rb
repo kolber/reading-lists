@@ -49,9 +49,10 @@ class Application < Sinatra::Base
       end
     end
 
-    articles = Instapaper.bookmarks({folder_id: user[:folder_id], limit: ARTICLE_LIMIT }) || []
+    existing_articles = user.articles.collect(&:instapaper_id).join(",")
+    articles = Instapaper.bookmarks({folder_id: user[:folder_id], limit: ARTICLE_LIMIT, have: existing_articles }) || []
     articles.each do |a|
-      article = Article.first(:url => a.url) || Article.create(:url => a.url, :title => a.title, :time => a.time.to_s)
+      article = Article.first(:url => a.url) || Article.create(:instapaper_id => a.bookmark_id, :url => a.url, :title => a.title, :time => a.time.to_s)
       user.articles << article
     end
     user.save
