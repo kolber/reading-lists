@@ -1,0 +1,27 @@
+<form action="/new" method="post" accept-charset="utf-8">
+  <p><em>Your Instapaper username/password are not saved, they are just sent to Instapaper to authorise your account.</em></p>
+
+  <fieldset>
+    <label for="username">Instapaper username:</label>
+    <input type="text" name="username" value="" id="username">
+  </fieldset>
+
+  <fieldset>
+    <label for="password">Instapaper password:</label>
+    <input type="password" name="password" value="" id="password">
+  </fieldset>
+
+  <fieldset>
+    <label for="folder_name">The name of the Instapaper folder you would like to share:</label>
+    <input type="text" name="folder_name" value="" id="folder_name">
+  </fieldset>
+
+  <fieldset>
+    <label for="url">Your preferred vanity url:</label><br>
+    <p>http://<%= request.host_with_port %>/<input type="text" name="url" value="" id="url"></p>
+  </fieldset>
+
+  <fieldset>
+    <button type="submit">Share your folder &rarr;</button>
+  </fieldset>
+</form>

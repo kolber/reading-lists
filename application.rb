@@ -1,33 +1,99 @@
 require 'sinatra/base'
 require 'instapaper'
+require 'data_mapper'
+
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
+
+class User
+  include DataMapper::Resource
+  property :id,           Serial
+  property :username,     String, :required => true
+  property :oauth_token,  String, :required => true
+  property :oauth_secret, String, :required => true
+  property :folder_name,  String, :required => true
+  property :folder_id,    String
+  property :completed_at, DateTime
+
+  has n, :articles, :through => Resource
+end
+
+class Article
+  include DataMapper::Resource
+  property :id,           Serial
+  property :url,          Text, :lazy => false
+  property :time,         String
+  property :title,        Text
+
+  has n, :users, :through => Resource
+end
+
+DataMapper.auto_upgrade!
 
 class Application < Sinatra::Base
   enable :sessions
 
-  KEY = ENV['KEY']
-  SECRET = ENV['SECRET']
-  OAUTH_TOKEN = ENV['OAUTH_TOKEN']
-  OAUTH_TOKEN_SECRET = ENV['OAUTH_TOKEN_SECRET']
-  FOLDER_NAME = 'Canon'
+  KEY = ENV['key']
+  SECRET = ENV['secret']
   ARTICLE_LIMIT = 50
 
-  get "/" do
+  get "/new" do
+    erb :new
+  end
 
+  post "/new" do
     Instapaper.configure do |config|
       config.consumer_key = KEY
       config.consumer_secret = SECRET
-      config.oauth_token = OAUTH_TOKEN
-      config.oauth_token_secret = OAUTH_TOKEN_SECRET
     end
 
-    target_id = false
-    Instapaper.folders.each do |folder|
-      target_id = folder[:folder_id] if (folder[:title].downcase == FOLDER_NAME.downcase)
+    begin
+      token = Instapaper.access_token(params[:username], params[:password])
+    rescue
+      return "Instapaper Username or Password is incorrect."
     end
 
-    @articles = Instapaper.bookmarks({folder_id: target_id, limit: ARTICLE_LIMIT })
+    # HANDLE NON-SUBSCRIPTION USERS
+    # PROTECT AGAINST DUPLICATE USERNAMES
+
+    user = User.new(:username => params[:url], :oauth_token => token['oauth_token'], :oauth_secret => token['oauth_token_secret'], :folder_name => params[:folder_name])
+    if user.save
+      redirect user.username+'/save-articles'
+    else
+      redirect '/new'
+    end
+  end
+
+  get "/:username/save-articles" do
+    user = User.first(:username => params[:username])
+    Instapaper.configure do |config|
+      config.consumer_key = KEY
+      config.consumer_secret = SECRET
+      config.oauth_token = user.oauth_token
+      config.oauth_token_secret = user.oauth_secret
+    end
+
+    if user[:folder_id].nil?
+      Instapaper.folders.each do |folder|
+        user.folder_id = folder[:folder_id] if (folder[:title] && folder[:title].downcase == user.folder_name.downcase)
+        user.save
+        break
+      end
+    end
+
+    articles = Instapaper.bookmarks({folder_id: user[:folder_id], limit: ARTICLE_LIMIT }) || []
+    articles.each do |a|
+      article = Article.first(:url => a.url) || Article.create(:url => a.url, :title => a.title, :time => a.time.to_s)
+      user.articles << article
+    end
+    user.save
+    redirect user.username
+  end
+
+  get "/:username" do
+    @user = User.first(:username => params[:username])
+    halt 404 if @user.nil?
+    @articles = @user.articles
     erb :index
-
   end
 
 end
