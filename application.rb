@@ -32,8 +32,8 @@ DataMapper.auto_upgrade!
 class Application < Sinatra::Base
   enable :sessions
 
-  KEY = ENV['key']
-  SECRET = ENV['secret']
+  KEY = ENV['OAUTH_KEY']
+  SECRET = ENV['OAUTH_SECRET']
   ARTICLE_LIMIT = 50
 
   get "/new" do
