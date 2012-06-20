@@ -23,7 +23,7 @@ class Application < Sinatra::Base
       return "Instapaper Username or Password is incorrect."
     end
 
-    # HANDLE NON-SUBSCRIPTION USERS
+    # HANDLE NON-SUBSCRIPTION USERS 
     # PROTECT AGAINST DUPLICATE USERNAMES
 
     user = User.new(:username => params[:url], :oauth_token => token['oauth_token'], :oauth_secret => token['oauth_token_secret'], :folder_name => params[:folder_name])
