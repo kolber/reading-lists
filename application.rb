@@ -2,6 +2,8 @@ require 'sinatra/base'
 require 'instapaper'
 require 'data_mapper'
 
+require File.expand_path(File.join(*%w[ models init ]), File.dirname(__FILE__))
+
 class Application < Sinatra::Base
   enable :sessions
 
@@ -67,5 +69,3 @@ class Application < Sinatra::Base
   end
 
 end
-
-require_relative 'models/init'
