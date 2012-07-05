@@ -26,6 +26,6 @@ end
 
 DataMapper.auto_upgrade!
 
-KEY = ENV['OAUTH_KEY']
-SECRET = ENV['OAUTH_SECRET']
+KEY = 'enixhdxl1wHjC3W60EdICnRfGk6aCjZfmBczvqVUaDZVWcekk0'
+SECRET = 'lZ9XOphbLu8pUWL4EsYGEvOyqgyhC7uuX1tZVBaSL1kft7Fyjw'
 ARTICLE_LIMIT = 50

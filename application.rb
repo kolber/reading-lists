@@ -1,11 +1,14 @@
 require 'sinatra/base'
 require 'instapaper'
 require 'data_mapper'
+require 'sinatra/flash'
 
 require File.expand_path(File.join(*%w[ models init ]), File.dirname(__FILE__))
 
 class Application < Sinatra::Base
+
   enable :sessions
+  register Sinatra::Flash
 
   get "/new" do
     erb :new
@@ -20,17 +23,34 @@ class Application < Sinatra::Base
     begin
       token = Instapaper.access_token(params[:username], params[:password])
     rescue
-      return "Instapaper Username or Password is incorrect."
+      flash.now[:auth_error] = ''
+      return erb :new
     end
 
-    # HANDLE NON-SUBSCRIPTION USERS 
+    Instapaper.configure do |config|
+      config.consumer_key = KEY
+      config.consumer_secret = SECRET
+      config.oauth_token = token['oauth_token']
+      config.oauth_token_secret = token['oauth_token_secret']
+    end
+
+    # HANDLE NON-SUBSCRIPTION USERS
+    instapaper_user = Instapaper.verify_credentials
+    if instapaper_user[0]['subscription_is_active'] == '0'
+      flash.now[:no_subscription] = ''
+      return erb :new
+    end
     # PROTECT AGAINST DUPLICATE USERNAMES
+    if User.count(:conditions => ['username = ?', params[:url]]) > 0
+      flash.now[:duplicate_username] = ''
+      return erb :new
+    end
 
     user = User.new(:username => params[:url], :oauth_token => token['oauth_token'], :oauth_secret => token['oauth_token_secret'], :folder_name => params[:folder_name])
     if user.save
       redirect user.username+'/save-articles'
     else
-      redirect '/new'
+      return erb :new
     end
   end
 

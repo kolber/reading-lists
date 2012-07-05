@@ -1,15 +1,19 @@
 <h1>♥♥</h1>
-<p><strong><%= @user.username %>'s Instapaper favourites.</strong><br>
-  This list is generated from the contents of a single Instapaper folder using the Instapaper API.<br>
-  The code is open-sourced and available to everyone at <a href="https://github.com/kolber/reading-lists">https://github.com/kolber/reading-lists</a>.</p>
+<h2><%= @user.username %>’s reading list</h2>
+<p>
+  A collection of things that <%= @user.username %> thinks are worth reading.</p>
 <ul>
-  <% @articles.each do |article| %>
-    <li>
-      <a href="<%= article.url %>" class="title" title="<%= article.url %>">
-        <strong><%= Time.at(article.time.to_i).strftime("%B %d") %></strong>
-        <%= article.title %>&nbsp;<em>↬</em>
-        <span class="link"><%= article.url %></span>
-      </a>
-    </li>
+  <% if @articles.length > 0 %>
+    <% @articles.each do |article| %>
+      <li>
+        <a href="<%= article.url %>" class="title" title="<%= article.url %>">
+          <strong><%= Time.at(article.time.to_i).strftime("%B %d") %></strong><br>
+          <%= article.title %>&nbsp;<em></em>
+          <span class="link"><%= article.url %></span>
+        </a>
+      </li>
+    <% end %>
+  <% else %>
+    <p class="highlight">There are no articles in <%= @user.username %>’s ‘<%= @user.folder_name %>’ folder yet.</p>
   <% end %>
 </ul>

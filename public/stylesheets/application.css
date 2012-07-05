@@ -1,9 +1,13 @@
-body { background: #fff; color: #222; font-size: 80%; line-height: 1.3;
-   margin: 3em auto; max-width: 53em; padding: 0em 2em; }
-h1 { position: relative; top: 0.2em; left: 1.8em; font-size: 2.2em; margin: 0em; font-family: 'courier new', courier, monospace; }
-p { position: relative; top: 0.1em; display: inline; padding: 0em; font-size: 1.2em; line-height: 1.2; color: rgba(34, 34, 34, 0.6); }
+body {
+  font-family:"Apercu Regular", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: normal; font-style: normal;
+  background: #fff; color: #222; font-size: 80%; line-height: 1.3; margin: 2em auto; max-width: 53em; padding: 0em 2em; }
+h1 { position: absolute; font-size: 1.5em; margin: 0.3em 0em 0em -1.6em; font-family: 'courier new', courier, monospace; color: rgb(239, 33, 51); }
+h2 {
+  font-family:"Apercu Bold", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: bold; font-style: normal;
+  float: left; position: relative; font-size: 1.6em; margin: 0 0 0.5em; padding: 0 0 0.1em; border-bottom: 2px solid; }
+p { clear: both; padding: 0; font-size: 1.2em; line-height: 1.2; color: rgba(34, 34, 34, 0.6); }
 p strong { color: #444; font-size: 1em; }
-p a { color: #222; }
+p a { color: #222; border-bottom: 1px solid; }
 
 a, span.link, a em { text-decoration: none;
   -webkit-transition: color linear 500ms;
@@ -21,10 +25,39 @@ a.title:visited em,
 a.title:hover strong,
 a.title:visited strong { color: rgba(239, 33, 51, 0.4); }
 
-ul { padding: 0em; list-style: none; margin-top: 5em; }
-li { font-size: 1.2em; margin-bottom: 2.4em; }
+ul { clear: both; padding: 0em 0em 0em; list-style: none; margin-top: 0em; }
+li { font-size: 1.2em; margin-bottom: 0.5em; }
 
-a.title { display: block; font-weight: bold; font-size: 2.1em; line-height: 1.2; color: rgb(34, 34, 34); margin: 0.2em 0em 0em; }
-a.title em { position: relative; top: -0.1em; left: -0.2em; color: rgba(34, 34, 34, 0.3); font-style: normal; font-weight: normal; font-size: 0.6em; }
-a.title strong { position: relative; top: -0.4em; padding: 0em; border-bottom: 1px solid; color: rgba(34, 34, 34, 0.4); font-family: baskerville; font-size: 0.45em; font-style: italic; font-weight: normal; line-height: 0em; }
-a.title span.link { display: block; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: rgba(34, 34, 34, 0.4); padding: 0.1em 0em 0em; font-size: 0.475em; font-weight: normal; }
+p.highlight { color: #222; background: #f6f6f6; padding: 1em; margin-left: -1em; }
+
+a.title {
+  font-family:"Apercu Bold", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: bold; font-style: normal;
+  display: block; font-weight: bold; font-size: 2em; line-height: 1.2; color: rgb(34, 34, 34); margin: 0.2em 0em 0em; }
+a.title em { position: relative; top: -0.2em; color: rgba(34, 34, 34, 0.3); font-style: normal; font-weight: normal; font-size: 0.5em; }
+a.title strong {
+  font-family:"Apercu Regular", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: normal; font-style: normal;
+  position: relative; top: 0.2em; padding: 0em 0em 0.1em; border-bottom: 1px solid; color: rgba(34, 34, 34, 0.4); font-size: 0.45em; }
+a.title span.link {
+  font-family:"Apercu Regular", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: normal; font-style: normal;
+  position: relative; display: block; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: rgba(34, 34, 34, 0.4); padding: 0.3em 0em 0.2em 1em; font-size: 0.45em; font-weight: normal; }
+a.title span.link:before { content: "⚓"; position: absolute; left: 0em; }
+
+
+form { clear: both; font-size: 1.4em; margin: 1em 0 0; }
+form p { margin: 0; padding: 0 0 1em; font-size: 0.9em; max-width: 30em; }
+form p.error { color: rgb(239, 33, 51); background: rgba(239, 33, 51, 0.1); padding: 1em; line-height: 1.4; }
+form p.error a { color: rgb(239, 33, 51); border-bottom: 1px solid; }
+form p.error:before { content: '✱ '; }
+form span { color: rgba(34, 34, 34, 0.6); }
+form label { margin: 0 0.5em 0 0; }
+form input {
+  margin: 0 0 0.5em; font-size: 1em; min-width: 15em;
+  font-family:"Apercu Bold", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: bold; font-style: normal;
+  padding: 0.3em 0em 0em; }
+form input:focus { outline: 0; }
+form fieldset { border: 0; padding: 0; margin: 0 0 1em; }
+form input { border: 0; border-bottom: 2px solid #222; }
+form button {
+  font-family:"Apercu Regular", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: normal; font-style: normal;
+  font-size: 0.9em; padding: 0.5em 1.6em; border-radius: 4px; border: 0; background: #222; color: #fff; cursor: pointer; }
+form button:hover { background: rgb(239, 33, 51); }
