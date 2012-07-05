@@ -6,9 +6,12 @@
   <% if @articles.length > 0 %>
     <% @articles.each do |article| %>
       <li>
+        <!-- <a href="http://www.instapaper.com/hello2?url=<%= URI.escape(article.url) %>&amp;title=<%= URI.escape(article.title) %>" class="save-to-instapaper">Read later</a> -->
+        <span class="save-to-instapaper"><iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" style="border: 0px; background-color: transparent; overflow: hidden;" src="http://www.instapaper.com/e2?url=<%= URI.escape(article.url) %>&amp;title=<%= URI.escape(article.title) %>"></iframe>
+        <a href="<%= article.url %>" class="title" title="<%= article.url %>"></span>
         <a href="<%= article.url %>" class="title" title="<%= article.url %>">
           <strong><%= Time.at(article.time.to_i).strftime("%B %d") %></strong><br>
-          <%= article.title %>&nbsp;<em></em>
+          <%= article.title %>
           <span class="link"><%= article.url %></span>
         </a>
       </li>

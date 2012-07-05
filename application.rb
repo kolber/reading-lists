@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'instapaper'
 require 'data_mapper'
 require 'sinatra/flash'
+require 'uri'
 
 require File.expand_path(File.join(*%w[ models init ]), File.dirname(__FILE__))
 
