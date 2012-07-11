@@ -4,6 +4,7 @@ class User
   include DataMapper::Resource
   property :id,           Serial
   property :username,     String, :required => true
+  property :email,        String
   property :oauth_token,  String, :required => true
   property :oauth_secret, String, :required => true
   property :folder_name,  String, :required => true
