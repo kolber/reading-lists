@@ -58,7 +58,7 @@ a.title span.link:before { content: "⚓"; position: absolute; left: 0em; }
 
 form { clear: both; font-size: 1.4em; margin: 1em 0 0; }
 form p { margin: 0; padding: 0 0 1em; font-size: 0.9em; max-width: 30em; }
-form p.error { color: rgb(239, 33, 51); background: rgba(239, 33, 51, 0.1); padding: 1em; line-height: 1.4; }
+form p.error { color: rgb(239, 33, 51); background: rgba(239, 33, 51, 0.1); padding: 1em; margin-bottom: 1em; line-height: 1.4; }
 form p.error a { color: rgb(239, 33, 51); border-bottom: 1px solid; }
 form p.error:before { content: '✱ '; }
 form span { color: rgba(34, 34, 34, 0.6); }
