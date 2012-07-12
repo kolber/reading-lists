@@ -86,7 +86,7 @@ class Application < Sinatra::Base
     @user = User.first(:username => params[:username])
     halt 404 if @user.nil?
     @articles = @user.articles.sort_by { |v| v[:time] }.reverse
-    erb :index
+    erb :list
   end
 
 end
