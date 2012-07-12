@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>
-      ♥♥
       <% if @user %>
-        by <%= @user.username %>
+        <%= @user.username %>’s reading list
+      <% else %>
+        Reading lists
       <% end %>
     </title>
     <link href="http://f.fontdeck.com/s/css/zH28mslJNSfrEtk/N8vkA5GMvEQ/reading-lists.heroku.com/20863.css" type="text/css" rel="stylesheet">
