@@ -1,11 +1,14 @@
 <h2><%= @user.username %>’s reading list</h2>
 <p>
-  A carefully curated list of things that <%= @user.username %> thinks are worth reading.</p>
+  <% unless @user.twitter_id.empty?  %>
+    A carefully curated list of things that <a href="http://twitter.com/<%= @user.twitter_id %>">@<%= @user.twitter_id %></a> thinks are worth reading.</p>
+  <% else %>
+    A carefully curated list of things that <%= @user.username %> thinks are worth reading.</p>
+  <% end %>
 <ul>
   <% if @articles.length > 0 %>
     <% @articles.each do |article| %>
       <li>
-        <!-- <a href="http://www.instapaper.com/hello2?url=<%= URI.escape(article.url) %>&amp;title=<%= URI.escape(article.title) %>" class="save-to-instapaper">Read later</a> -->
         <a href="<%= article.url %>" class="title" title="<%= article.url %>"></span>
         <a href="<%= article.url %>" class="title" title="<%= article.url %>">
           <strong><%= Time.at(article.time.to_i).strftime("%B %d") %></strong><br>
