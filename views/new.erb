@@ -30,6 +30,12 @@
   <p>The folder doesn’t have to exist yet. You can set it up here, then go and create it in your Instapaper account later.</p>
 
   <fieldset>
+    <label for="twitter_id">Your twitter username (optional):</label><br>
+    <input type="text" name="twitter_id" value="<%= params[:twitter_id] || ""  %>" id="twitter_id">
+  </fieldset>
+  <p>You don’t need to provide your Twitter username, but if you do, we’ll link it up on your list page.</p>
+
+  <fieldset>
     <label for="url">Your preferred url:</label><br>
     <span>http://<%= request.host_with_port %>/<input type="text" name="url" value="<%= params[:url] || ""  %>" id="url"></span>
     <% if flash[:duplicate_username] %>

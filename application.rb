@@ -47,7 +47,7 @@ class Application < Sinatra::Base
       return erb :new
     end
 
-    user = User.new(:username => params[:url], :email => params[:username], :oauth_token => token['oauth_token'], :oauth_secret => token['oauth_token_secret'], :folder_name => params[:folder_name])
+    user = User.new(:username => params[:url], :email => params[:username], :twitter_id => params[:twitter_id], :oauth_token => token['oauth_token'], :oauth_secret => token['oauth_token_secret'], :folder_name => params[:folder_name])
     if user.save
       redirect user.username+'/save-articles'
     else
