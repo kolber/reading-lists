@@ -1,7 +1,7 @@
 <h2>Share an Instapaper folder with the world</h2>
 <form action="/new" method="post" accept-charset="utf-8">
-  <p>Reading Lists allows you to share the contents of an Instapaper with the world. The contents of your folder are scanned and updated every hour.</p>
-  <p><em>There is one caveat, you need to be an <a href="http://www.instapaper.com/subscription">Instapaper subscriber</a> to use the service.</em></p>
+  <p>Reading Lists allows you to share the contents of one of your Instapaper folders. The contents of your folder are scanned and updated every hour.</p>
+  <p><em>One thing, you need to be an <a href="http://www.instapaper.com/subscription">Instapaper subscriber</a> to use the service. Marco has locked non-subscribers out of his API, so if you’re not, we’re not allowed to access your folders.</em></p>
 
   <fieldset>
     <label for="username">Instapaper username:</label>
@@ -17,7 +17,7 @@
     <p class="error">Your Instapaper username/password was rejected by the Instapaper API. Have you recently changed it?</p>
   <% elsif flash[:no_subscription] %>
     <p class="error">It looks like you’re not an Instapaper subscriber, so we aren’t allowed to access your folders.
-      <a href="http://www.instapaper.com/subscription">Becoming an Instapaper subscriber</a> is easy, supports Marco and only costs $1/month.</p>
+      <a href="http://www.instapaper.com/subscription">Becoming an subscriber</a> is easy, supports the Instapaper project and only costs $1/month.</p>
 
   <% else %>
     <p>Your Instapaper username/password are never stored, only sent to Instapaper to authorise your account.</p>
