@@ -8,20 +8,20 @@ body { font-family:"Apercu Regular", Calibri, sans-serif; font-size-adjust: 0.50
 h2 { font-family:"Apercu Bold", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: bold; font-style: normal; color: #444;
   float: left; position: relative; font-size: 1.6em; margin: 0 0 0.5em; padding: 0 0 1px; border-bottom: 2px solid; }
 h2:before { font-family: 'readinglist'; content: '\f02d'; -webkit-font-smoothing: antialiased; font-weight: normal;
-  position: absolute; font-size: 1.1em; margin: 0.1em 0em 0em -1.2em; }
+  position: absolute; font-size: 1.1em; margin: 0.05em 0em 0em -1.2em; }
 p { clear: both; padding: 0; font-size: 1.25em; line-height: 1.2; color: rgba(34, 34, 34, 0.6); }
 p strong { color: #444; font-size: 1em; }
-p a { color: #222; border-bottom: 1px solid; }
+p a { color: rgba(34, 34, 34, 0.6); border-bottom: 1px solid; }
 
 a, span.link, a em, a strong { text-decoration: none;
-  -webkit-transition: color linear 500ms;
-     -moz-transition: color linear 500ms;
-       -o-transition: color linear 500ms;
-          transition: color linear 500ms; }
+  -webkit-transition: color linear 400ms;
+     -moz-transition: color linear 400ms;
+       -o-transition: color linear 400ms;
+          transition: color linear 400ms; }
 
 a:hover,
 a.title:hover,
-a.title:visited { color: rgba(255, 51, 85, 1  ); }
+a.title:visited { color: rgba(34, 34, 34, 0.6); }
 a.title:hover span.link,
 a.title:visited span.link { color: rgba(34, 34, 34, 0.2); }
 a.title:hover em,
@@ -61,7 +61,7 @@ form input {
   font-family:"Apercu Bold", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: bold; font-style: normal;
   padding: 0.3em 0em 0em; }
 form input:focus { outline: 0; }
-form fieldset { border: 0; padding: 0; margin: 0 0 1em; }
+form fieldset { border: 0; padding: 0; margin: 1em 0em 0.5em; }
 form input { border: 0; border-bottom: 2px solid #222; }
 form button {
   font-family:"Apercu Regular", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: normal; font-style: normal;

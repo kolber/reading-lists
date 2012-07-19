@@ -1,9 +1,9 @@
 <h2><%= @user.username %>’s reading list</h2>
 <p>
   <% unless @user.twitter_id.empty?  %>
-    A carefully curated list of things that <a href="http://twitter.com/<%= @user.twitter_id %>">@<%= @user.twitter_id %></a> thinks are worth reading.</p>
+    A carefully curated list of articles that <a href="http://twitter.com/<%= @user.twitter_id %>">@<%= @user.twitter_id %></a> thinks are worth reading.</p>
   <% else %>
-    A carefully curated list of things that <%= @user.username %> thinks are worth reading.</p>
+    A carefully curated list of atricles that <%= @user.username %> thinks are worth reading.</p>
   <% end %>
 <ul>
   <% if @articles.length > 0 %>
