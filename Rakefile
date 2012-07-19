@@ -32,19 +32,21 @@ task :cron => :environment do
     existing_articles = user.articles.group_by(&:instapaper_id)
     # Look for new articles to add
     articles = Instapaper.bookmarks({folder_id: user[:folder_id], limit: ARTICLE_LIMIT }) || []
-    articles.each do |a|
-      unless existing_articles.has_key?(a.bookmark_id)
-        article = Article.first(:url => a.url) || Article.create(:instapaper_id => a.bookmark_id, :url => a.url, :title => a.title, :time => a.time.to_s)
-        p "Added: #{a.url}"
-        user.articles << article
+    unless articles.empty?
+      articles.each do |a|
+        unless existing_articles.has_key?(a.bookmark_id)
+          article = Article.first(:url => a.url) || Article.create(:instapaper_id => a.bookmark_id, :url => a.url, :title => a.title, :time => a.time.to_s)
+          p "Added: #{a.url}"
+          user.articles << article
+        end
       end
-    end
-    # Look for articles no longer in the folder to remove
-    article_ids = articles.collect(&:bookmark_id)
-    user.articles.each do |a|
-      unless article_ids.include?(a.instapaper_id)
-        p "Remove: #{a.url}"
-        user.articles.delete(a)
+      # Look for articles no longer in the folder to remove
+      article_ids = articles.collect(&:bookmark_id)
+      user.articles.each do |a|
+        unless article_ids.include?(a.instapaper_id)
+          p "Remove: #{a.url}"
+          user.articles.delete(a)
+        end
       end
     end
 
