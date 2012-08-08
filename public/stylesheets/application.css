@@ -59,7 +59,7 @@ form p.error:before { content: '✱ '; }
 form span { color: rgba(34, 34, 34, 0.6); }
 form label { margin: 0 0.5em 0 0; }
 form input {
-  margin: 0 0 0.5em; font-size: 1em; min-width: 15em;
+  margin: 1 0 0.5em; font-size: 1em; min-width: 12em;
   font-family:"Apercu Bold", Calibri, sans-serif; font-size-adjust: 0.508; font-weight: bold; font-style: normal;
   padding: 0.3em 0em 0em; }
 form input:focus { outline: 0; }
