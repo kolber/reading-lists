@@ -9,7 +9,6 @@
   <% if @articles.length > 0 %>
     <% @articles.each do |article| %>
       <li>
-        <a href="<%= article.url %>" class="title" title="<%= article.url %>"></span>
         <a href="<%= article.url %>" class="title" title="<%= article.url %>">
           <strong><%= Time.at(article.time.to_i).strftime("%B %d") %></strong><br>
           <%= article.title %>
